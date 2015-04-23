@@ -7,8 +7,19 @@ var bodyParser = require('body-parser');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
+var mongoose = require('mongoose');
+
+var dbUrl = 'mongodb://localhost/blog';
+//var fs = require('fs');
+mongoose.connect(dbUrl);
+
+var BlogPost = require('./models/blogPost');
+var Category = require('./models/category');
+var Comment = require('./models/comment');
+var User = require('./models/user');
 
 var app = express();
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

@@ -1,5 +1,5 @@
 var mongoose = require('mongoose')
-var MovieSchema = require('../schemas/movie')
-var Movie = mongoose.model('Movie', MovieSchema)
+var BlogPostSchema = require('../schemas/blogPost')
+var BlogPost = mongoose.model('BlogPost', BlogPostSchema)
 
-module.exports = Movie
+module.exports = BlogPost
