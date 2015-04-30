@@ -3,7 +3,7 @@ extends layout
 block content
   .container
     .row
-      form.form-horizontal(method="Post", action="/blogs")
+      form.form-horizontal(method="Post", action="/blogs/admin/save")
         input(type="hidden", name="bodyContent", value=blogPost.bodyContent)
         if blogPost._id
           input(type="hidden", name="_id", value=blogPost._id)

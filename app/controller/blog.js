@@ -14,7 +14,7 @@ exports.list = function(req, res){
             }
             console.log(blogPosts)
             res.render('list',{
-                title: 'Blog???',
+                title: 'Blog Index',
                 blogPosts: blogPosts
             })
         })
@@ -24,7 +24,7 @@ exports.list = function(req, res){
  * find listAll by Id
  * */
 exports.detail = function(req, res) {
-    var id = req.params.id
+    var id = req.body._id
     if (id) {
         BlogPost.findOne({_id : id})
             .populate('author', 'name') // join User
@@ -46,7 +46,8 @@ exports.detail = function(req, res) {
 /**
  * add a new or update blogPost
  */
-exports.save = function(req, res, next) {
+exports.save = function(req, res) {
+    console.log(req.body)
     var id = req.body._id
     var blogPostObj = req.body
 
@@ -62,7 +63,7 @@ exports.save = function(req, res, next) {
             blogPost.save()
 
             // redirect to /Blog/list/id
-            res.redirect('blogs')
+            res.redirect('/blogs')
         })
     } else {
         var blogPostModel = new BlogPost(blogPostObj)
@@ -73,7 +74,7 @@ exports.save = function(req, res, next) {
             }
             console.log("user created: " + blogPostModel);
             // redirect to /Blog/list/id
-            res.redirect('blogs')
+            res.redirect('/blogs')
         })
     }
 }
@@ -107,7 +108,6 @@ exports.update =  function(req, res) {
 **GET admin page.
 */
 exports.new = function(req, res, next) {
-
     Category.find({}, function (err, categorys) {
         console.log(categorys)
         res.render('admin',

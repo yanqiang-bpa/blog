@@ -1,19 +1,21 @@
-var Index = require('../app/controller/index');
+var index = require('../app/controller/index');
 var users = require('../app/controller/users');
 var blog = require('../app/controller/blog');
 
 module.exports = function(app) {
     // Index
-    app.get('/',Index.index)
+    app.get('/',index.index)
 
     //Blogs
     app.get('/blogs',blog.list)
     //find list by ID
     app.get('/blogs/:id',blog.detail)
-    app.post('/blogs/',blog.save)
+    //save a blog
+    app.post('/blogs/admin/save',blog.save)
     // update by Id
     app.get('/blogs/update',blog.update)
-    app.get('/blogs/new',blog.new)
+    // forward a new blog page
+    app.get('/blogs/admin/new',blog.new)
     //delete by ID
     app.delete('/blogs/delete/:id',blog.delete)
 
