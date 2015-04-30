@@ -24,7 +24,8 @@ exports.list = function(req, res){
  * find listAll by Id
  * */
 exports.detail = function(req, res) {
-    var id = req.body._id
+    var id = req.params.id
+    console.log(id)
     if (id) {
         BlogPost.findOne({_id : id})
             .populate('author', 'name') // join User
@@ -40,6 +41,8 @@ exports.detail = function(req, res) {
                         blogPost : blogPost
                     });
             })
+    } else {
+        res.send(id)
     }
 }
 
@@ -84,7 +87,6 @@ exports.save = function(req, res) {
  */
 exports.update =  function(req, res) {
     var id = req.params.id
-
     if(id) {
         BlogPost.findById(id, function(err, blogPost){
             if(err) {

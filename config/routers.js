@@ -9,11 +9,11 @@ module.exports = function(app) {
     //Blogs
     app.get('/blogs',blog.list)
     //find list by ID
-    app.get('/blogs/:id',blog.detail)
+    app.get('/blogs/list/:id',blog.detail)
     //save a blog
     app.post('/blogs/admin/save',blog.save)
     // update by Id
-    app.get('/blogs/update',blog.update)
+    app.get('/blogs/update/:id',blog.update)
     // forward a new blog page
     app.get('/blogs/admin/new',blog.new)
     //delete by ID
