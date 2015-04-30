@@ -1,31 +1,18 @@
-$(function() {
-  $('.comment').click(function(e) {
-    var target = $(this)
-    var toId = target.data('tid')
-    var commentId = target.data('cid')
-
-    if ($('#toId').length > 0) {
-      $('#toId').val(toId)
-    }
-    else {
-      $('<input>').attr({
-        type: 'hidden',
-        id: 'toId',
-        name: 'comment[tid]',
-        value: toId
-      }).appendTo('#commentForm')
-    }
-
-    if ($('#commentId').length > 0) {
-      $('#commentId').val(commentId)
-    }
-    else {
-      $('<input>').attr({
-        type: 'hidden',
-        id: 'commentId',
-        name: 'comment[cid]',
-        value: commentId
-      }).appendTo('#commentForm')
-    }
-  })
-})
+function onDelete() {
+    $('.del').click(function(e) {
+        var target = $(e.target)
+        var id = target.data('id')
+        var tr = $('.item-id-' + id)
+        $.ajax({
+            type: 'DELETE',
+            url: '/blogs/delete/' + id
+        })
+            .done(function(results) {
+                if (results.success === 1) {
+                    if (tr.length > 0) {
+                        tr.remove()
+                    }
+                }
+            })
+    })
+}
