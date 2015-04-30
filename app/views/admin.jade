@@ -1,0 +1,43 @@
+extends layout
+
+block content
+  .container
+    .row
+      form.form-horizontal(method="Post", action="/blogs")
+        input(type="hidden", name="bodyContent", value=blogPost.bodyContent)
+        if blogPost._id
+          input(type="hidden", name="_id", value=blogPost._id)
+        .form-group
+          label.col-sm-2.control-label Category
+          .col-sm-10
+            each cat in categorys
+              if cat
+                label.btn.btn-primary(type='text' name='categoryNew', value='#{cat._id}') #{cat._id}
+                  span.badge
+                    | 10
+              else
+                label.btn.btn-primary(type='text' name='categoryNew', value='#{cat._id}') #{cat._id}
+                  span.badge
+                    | 10
+        .form-group
+          label.col-sm-2.control-label(for="inputCategory") Category
+          .col-sm-10
+            input#inputCategory.form-control(type="text", name="category", value=blogPost.category)
+        .form-group
+          label.col-sm-2.control-label(for="inputTitle") Blog title
+          .col-sm-10
+            input#inputTitle.form-control(type="text", name="title", value=blogPost.title)
+        .form-group
+          label.col-sm-2.control-label(for="inputBody") Blog body
+          .col-sm-10
+            //#summernote
+            textarea#summernote.form-control(name="body" row='18' value=blogPost.body)
+              | #{blogPost.body}
+        .form-group
+          label.col-sm-2.control-label(for="author") Author
+          .col-sm-10
+            input#author.form-control(type="text", name="author", value='5539cc741903bafec1b8077f')
+        .form-group
+          .col-sm-offset-2.col-sm-10
+          input.btn.btn-default.btn-primary(type="submit")
+  script(src='/build/admin.min.js')

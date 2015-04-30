@@ -1,0 +1,36 @@
+extends layout
+
+block content
+  .container
+    .row
+      form.form-horizontal(method="Get", action="blogs/new")
+        input.btn.btn-default.btn-primary(type="submit")
+    .row
+      table.table.table-hover.table-bordered
+        thead
+          tr
+            th Category
+            th BlogTile
+            th BlogBody
+            th Author
+            th createAt
+            th updateAt
+            th Review
+            th Update
+            th Delete
+        tbody
+          each item in blogPosts
+            tr(class="item-id-#{item._id}")
+              td
+                each cItem in item.category
+                  label.label.label-info #{cItem.name}
+              td #{item.title}
+              td #{item.body}
+              td #{item.author.name}
+              td #{moment(item.meta.createAt).format("YYYY-MM-DD HH:mm")}
+              td #{moment(item.meta.updateAt).format("YYYY-MM-DD HH:mm")}
+              td: a(target="_blank", href="/blogs/#{item._id}") review
+              td: a(target="_blank", href="/blogs/#{item._id}") update
+              td
+                button#del.btn.btn-danger.del(type="button", data-id="#{item._id}" onclick='onDelete()') Delete
+    script(src='./build/detail.min.js')

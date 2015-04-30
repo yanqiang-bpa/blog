@@ -1,0 +1,67 @@
+extends layout
+
+block content
+  .container
+    .row
+      .col-md-8
+        each item in blogPosts
+          .row
+            br
+            br
+            h1
+              | #{item.title}
+            p.lead
+              | by
+              a(href='#')
+                | #{item.author.name}
+            hr
+            p
+              span.glyphicon.glyphicon-time
+              | Posted on #{moment(item.meta.createAt).format('YYYY-MM-DD HH:mm')}
+            hr
+            img.img-responsive(src='/upload/1408255311746.jpeg' alt='')
+            hr
+            #{item.body}
+            hr
+         //Blog Sidebar Widgets Column
+      .col-md-4
+        .well
+            h4
+             |Blog Search
+            .input-group
+                input.form-control(type = 'text')
+                span.input-group-btn
+                    button.btn.btn-default(type = 'button')
+                        span.glyphicon.glyphicon-search
+        .well //Axaj to get Categories information
+          h4
+            | Blog Categories
+          .row
+            .col-lg-6
+              ui.list-unstyled
+                li
+                  a(href = '#')
+                    | Category Name
+                li
+                  a(href = '#')
+                    | Category Name
+                li
+                  a(href = '#')
+                    | Category Name
+                li
+                  a(href = '#')
+                    | Category Name
+            .col-lg-6
+              ui.list-unstyled
+                li
+                  a(href = '#')
+                    | Category Name
+                li
+                  a(href = '#')
+                    | Category Name
+                li
+                  a(href = '#')
+                    | Category Name
+                li
+                  a(href = '#')
+                    | Category Name
